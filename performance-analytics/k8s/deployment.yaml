@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: performance-analytics
-          image: <+artifact.image>
+          image: vikyathharekal/performance-analytics:latest
           ports:
             - containerPort: 7003
           env:
