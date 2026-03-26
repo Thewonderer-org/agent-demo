@@ -4,6 +4,7 @@ metadata:
   name: driver-analytics
   labels:
     app: driver-analytics
+    team: f1-demo
 spec:
   replicas: 1
   selector:
@@ -13,6 +14,7 @@ spec:
     metadata:
       labels:
         app: driver-analytics
+        team: f1-demo
     spec:
       containers:
         - name: driver-analytics
@@ -22,6 +24,13 @@ spec:
           env:
             - name: PITSTOP_SERVICE_URL
               value: "http://pitstop-duration-optimizer:7001"
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
           readinessProbe:
             httpGet:
               path: /health

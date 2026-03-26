@@ -4,6 +4,7 @@ metadata:
   name: pitstop-duration-optimizer
   labels:
     app: pitstop-duration-optimizer
+    team: f1-demo
 spec:
   replicas: 1
   selector:
@@ -13,12 +14,20 @@ spec:
     metadata:
       labels:
         app: pitstop-duration-optimizer
+        team: f1-demo
     spec:
       containers:
         - name: pitstop-duration-optimizer
           image: <+artifact.image>
           ports:
             - containerPort: 7001
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
           readinessProbe:
             httpGet:
               path: /health
