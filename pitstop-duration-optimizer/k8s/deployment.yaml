@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: pitstop-duration-optimizer
-          image: vikyathharekal/pitstop-duration-optimizer:latest
+          image: <+artifact.image>
           ports:
             - containerPort: 7001
           resources:

@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: driver-analytics
-          image: vikyathharekal/driver-analytics:latest
+          image: <+artifact.image>
           ports:
             - containerPort: 7002
           env:
