@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: race-strategy-service
+spec:
+  selector:
+    app: race-strategy-service
+  ports:
+    - port: 7004
+      targetPort: 7004
+      protocol: TCP

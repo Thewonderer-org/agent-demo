@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pitstop-orchestrator-service
+  labels:
+    app: pitstop-orchestrator-service
+    team: f1-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pitstop-orchestrator-service
+  template:
+    metadata:
+      labels:
+        app: pitstop-orchestrator-service
+        team: f1-demo
+    spec:
+      containers:
+        - name: pitstop-orchestrator-service
+          image: {{.Values.image}}
+          ports:
+            - containerPort: 7005
+          env:
+            - name: RACE_STRATEGY_SERVICE_URL
+              value: "http://race-strategy-service:7004"
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 7005
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 7005
+            initialDelaySeconds: 5
+            periodSeconds: 10

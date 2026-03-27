@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: race-strategy-service
+  labels:
+    app: race-strategy-service
+    team: f1-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: race-strategy-service
+  template:
+    metadata:
+      labels:
+        app: race-strategy-service
+        team: f1-demo
+    spec:
+      containers:
+        - name: race-strategy-service
+          image: {{.Values.image}}
+          ports:
+            - containerPort: 7004
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 7004
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 7004
+            initialDelaySeconds: 5
+            periodSeconds: 10

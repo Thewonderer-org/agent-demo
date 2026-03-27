@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pitstop-orchestrator-service
+spec:
+  selector:
+    app: pitstop-orchestrator-service
+  ports:
+    - port: 7005
+      targetPort: 7005
+      protocol: TCP
