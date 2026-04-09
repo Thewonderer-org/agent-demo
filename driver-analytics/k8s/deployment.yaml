@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: driver-analytics
+  name: order_service
   labels:
-    app: driver-analytics
+    app: order_service
     team: f1-demo
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: driver-analytics
+      app: order_service
   template:
     metadata:
       labels:
-        app: driver-analytics
+        app: order_service
         team: f1-demo
     spec:
       containers:
-        - name: driver-analytics
+        - name: order_service
           image: {{.Values.image}}
           ports:
             - containerPort: 7002
           env:
-            - name: PITSTOP_SERVICE_URL
-              value: "http://pitstop-duration-optimizer:7001"
+            - name: INVENTORY_SERVICE_URL
+              value: "http://inventory_service:7001"
           resources:
             requests:
               cpu: 50m

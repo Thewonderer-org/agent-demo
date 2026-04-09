@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: driver-analytics
+  name: order_service
 spec:
   selector:
-    app: driver-analytics
+    app: order_service
   ports:
     - port: 7002
       targetPort: 7002
