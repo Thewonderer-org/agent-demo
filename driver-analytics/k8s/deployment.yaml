@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: order_service
+  name: order-service
   labels:
-    app: order_service
+    app: order-service
     team: f1-demo
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: order_service
+      app: order-service
   template:
     metadata:
       labels:
-        app: order_service
+        app: order-service
         team: f1-demo
     spec:
       containers:
-        - name: order_service
+        - name: order-service
           image: {{.Values.image}}
           ports:
             - containerPort: 7002
