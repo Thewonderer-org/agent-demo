@@ -6,6 +6,6 @@ spec:
   selector:
     app: order-service
   ports:
-    - port: 7002
-      targetPort: 7002
+    - port: 80
+      targetPort: 80
       protocol: TCP

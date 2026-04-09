@@ -20,7 +20,7 @@ spec:
         - name: order-service
           image: {{.Values.image}}
           ports:
-            - containerPort: 7002
+            - containerPort: 80
           env:
             - name: INVENTORY_SERVICE_URL
               value: "http://inventory_service:7001"
@@ -33,13 +33,13 @@ spec:
               memory: 128Mi
           readinessProbe:
             httpGet:
-              path: /health
-              port: 7002
+              path: /
+              port: 80
             initialDelaySeconds: 5
             periodSeconds: 10
           livenessProbe:
             httpGet:
-              path: /health
-              port: 7002
+              path: /
+              port: 80
             initialDelaySeconds: 5
             periodSeconds: 10
